@@ -1,0 +1,10 @@
+# Setting up CI/CD Pipeline
+
+#### Setting Up Codebase
+Let us assume a six-person team is working on an unspecified application written in Java. To keep the codebase consistent, they need to agree on tools they're going to use. For linting, there are abundance of options to choose from, such as Checkstyle or Spotless. The team may also choose to use a Java IDE, such as IntelliJ or Eclipse, and use the built-in tools to keep the code in check. As for testing they might want to pick one that matches the nature of the application best. For UI heavy application they might go with Selenium, to simulate how a real life user might use the application, and to iron out the most obvious of the bugs. For your standard unit tests there's JUnit and for mocks, Mockito, which you might want to combine with a matcher such as Hamcrest. For building, in java the far most popular tool is Maven, mainly used to manage dependencies and to write plugins. Aside from Maven you could also use Ant or Gradle.
+
+#### CI tool alternitives
+Jenkins is the most popular tool for setting up CI. Known for over decades, it started as far back as 2004, then known as Hudson, changing its name in 2011, it has been a popular choice among the developers. But besides Jenkins, what options are there? Another popular option is Gitlab, offering deep integration and automation, but you might be turned off by its licence fees. There are also CI tools that offer compatibility with their respective host services, such as Azure DevOps with Azure Cloud or AWS CodePipeline with AWS services.
+
+#### Choosing between self-host and cloud-based
+Choosing between the two depends on what you or your organization are trying to prioritize. Self-hosted CI gives you more control, ownership, and customization. Additionally depending on the security measures you take, self-hosted has potential to be more secure. On the other side, cloud-based is very low maintenance compared to self-hosted, and usually offers more support. On organization scale, cloud-based has potential to be cheaper as well, costing less developers time maintaining it.
