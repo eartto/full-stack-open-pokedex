@@ -1,0 +1,12 @@
+name: Trigger deployment
+on:
+  push:
+    branches:
+      - main
+
+jobs: 
+  deploy_to_render:
+      runs-on: ubuntu-22.04
+      steps:
+        - name: Trigger deployment
+          run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
