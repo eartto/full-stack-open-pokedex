@@ -3,9 +3,12 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches: [ main, master ]
 
 jobs: 
   deploy_to_render:
+      if: ${{ github.event_name == 'push' }}
       runs-on: ubuntu-22.04
       steps:
         - name: Trigger deployment
