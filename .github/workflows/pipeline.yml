@@ -41,6 +41,8 @@ jobs:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - uses: anothrNick/github-tag-action@1.73.0
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
