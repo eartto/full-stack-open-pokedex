@@ -58,8 +58,7 @@ jobs:
           run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
         - name: Discord notification positive
           if: ${{ success() }}
-        - uses: sarisia/actions-status-discord@v1
-          if: always()
+          uses: sarisia/actions-status-discord@v1
           with:
             webhook: ${{ secrets.DISCORD_WEBHOOK }}
             description: "Deployment succeeded ✅"
@@ -68,8 +67,7 @@ jobs:
 
         - name: Discord notification negative
           if: ${{ failure() }}
-        - uses: sarisia/actions-status-discord@v1
-          if: always()
+          uses: sarisia/actions-status-discord@v1
           with:
             webhook: ${{ secrets.DISCORD_WEBHOOK }}
             description: "❌ Deployment failed"
