@@ -57,17 +57,21 @@ jobs:
         - name: Trigger deployment
           run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
         - name: Discord notification positive
-          run: |
-            curl -X POST -H "Content-Type: application/json" \
-            -d '{"username": "eartto",
-            "content": "✅ Deployment successful"}' \
-            "${{ secrets.DISCORD_WEBHOOK }}"
-        - name: Discord notification negative
-          run: |
-            curl -X POST -H "Content-Type: application/json" \
-            -d '{"username": "eartto",
-            "content": "❌ Deployment failed"}' \
-            "${{ secrets.DISCORD_WEBHOOK }}"
+          if: ${{ success() }}
+        - uses: sarisia/actions-status-discord@v1
+          if: always()
+          with:
+            webhook: ${{ secrets.DISCORD_WEBHOOK }}
+            description: "Deployment succeeded ✅"
+            url: "https://github.com/eartto/full-stack-open-pokedex"
+            username: GitHub Actions Bot
 
-          
-  
+        - name: Discord notification negative
+          if: ${{ failure() }}
+        - uses: sarisia/actions-status-discord@v1
+          if: always()
+          with:
+            webhook: ${{ secrets.DISCORD_WEBHOOK }}
+            description: "❌ Deployment failed"
+            url: "https://github.com/eartto/full-stack-open-pokedex"
+            username: GitHub Actions Bot
